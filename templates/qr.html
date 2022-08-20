@@ -1,0 +1,7 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <img src={{img}} alt="img">
+        <button type="submit"><a href="{% url 'add_qr' %}">Save</a></button>
+{% endblock content %}
