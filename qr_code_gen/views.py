@@ -1,6 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import render, redirect
 import qrcode
+from qr_generator.settings import MEDIA_ROOT
 from qr_code_gen.models import QR_Data
 
 from .forms import QR_DataForm
@@ -13,7 +14,7 @@ def qr_form(request):
         if form.is_valid():
             form.save()
             qrcode_img = qrcode.make(QR_Data.objects.last())
-            fname = fr"C:\Users\USER\Desktop\django-project\media\{request.POST['phone_number']}.png"
+            fname = fr"{MEDIA_ROOT}\{request.POST['phone_number']}.png"
             qrcode_img.save(fname)
             return redirect('show_qr')
         else:
